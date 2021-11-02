@@ -31,6 +31,11 @@ namespace PayParking.Controllers
                     ModelState.AddModelError("EmailExist", " Email already exist");
                     return View(user);
                 }
+                //Generate activation code
+                user.ActivationCode = Guid.NewGuid();
+
+                //Password hashing
+
             }
             else
             {
