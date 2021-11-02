@@ -19,7 +19,33 @@ namespace PayParking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Registration([Bind(Exclude ="IsEmailVerified,ActivationCode")]User user)
         {
+            bool Status = false;
+            string message = "";
+            //Model validation
+            if(ModelState.IsValid)
+            {
+                //Email already exists
+                var isExist = IsEmaiExist(user.Email);
+                if(isExist)
+                {
+                    ModelState.AddModelError("EmailExist", " Email already exist");
+                    return View(user);
+                }
+            }
+            else
+            {
+                message = "Invalid Request";
+            }
             return View(user);
+        }
+        [NonAction]
+        public bool IsEmaiExist(string email)
+        {
+            using (DatabaseEntities1 de=new DatabaseEntities1())
+            {
+                var x = de.Users.Where(a => a.Email == email).FirstOrDefault();
+                return x != null;
+            }
         }
     }
 }
