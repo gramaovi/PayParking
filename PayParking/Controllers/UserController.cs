@@ -37,6 +37,16 @@ namespace PayParking.Controllers
                 //Password hashing
                 user.Password = Cryptography.Hash(user.Password);
                 user.ConfirmPassword = Cryptography.Hash(user.ConfirmPassword);
+
+                user.IsEmailVerified = false;
+                
+                //Save to db
+                using (DatabaseEntities1 de=new DatabaseEntities1())
+                {
+                    de.Users.Add(user);
+                    de.SaveChanges();
+
+                }
             }
             else
             {
