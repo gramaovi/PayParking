@@ -144,6 +144,7 @@ namespace PayParking.Controllers
             ViewBag.Message = message;
             return View();
         }
+        [HttpPost]
         [Authorize]
         public ActionResult Logout()
         {
