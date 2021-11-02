@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,11 +49,18 @@ namespace PayParking.Controllers
                     de.SaveChanges();
 
                 }
+                //Send verification code to email
+
+                SendVerificationLinkEmail(user.Email, user.ActivationCode.ToString());
+                message = "Registration successfully done. Activation link has been sent to your email :" + user.Email;
+                Status = true;
             }
             else
             {
                 message = "Invalid Request";
             }
+            ViewBag.Message = message;
+            ViewBag.Status = Status;
             return View(user);
         }
         [NonAction]
@@ -62,6 +71,34 @@ namespace PayParking.Controllers
                 var x = de.Users.Where(a => a.Email == email).FirstOrDefault();
                 return x != null;
             }
+        }
+        [NonAction]
+        public void SendVerificationLinkEmail(string email,string activationCode)
+        {
+            var verifyUrl = "/User/VerifyAccount/" + activationCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            var fromEmail = new MailAddress("matrix.software.recruit.test@gmail.com", "Matrix Software House");
+            var toEmail = new MailAddress(email);
+            var fromEmailPassword = "matrixqwerty123";
+            string subject = "Your account was succesfully created";
+            string body = "<br/><br/> You re Parking Pay service account was successfully created. Click on the link below to verify your account " + link + "<br/><br/><a href='" + link + "'>" + link + "</a>";
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+
+            };
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+                smtp.Send(message);
         }
     }
 }
