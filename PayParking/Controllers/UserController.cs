@@ -63,6 +63,31 @@ namespace PayParking.Controllers
             ViewBag.Status = Status;
             return View(user);
         }
+
+        [HttpGet]
+        public ActionResult VerifyAccount(string id)
+        {
+            bool Status = false;
+            using (DatabaseEntities1 de=new DatabaseEntities1())
+            {
+                de.Configuration.ValidateOnSaveEnabled = false;//avoid confirm password does not match
+
+                var v = de.Users.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+                if(v!=null)
+                {
+                    v.IsEmailVerified = true;
+                    de.SaveChanges();
+                    Status = true;
+                }
+                else
+                {
+                    ViewBag.Message = "Invalid Request";
+                }
+                ViewBag.Status = Status;
+                return View();
+            }
+        }
+        
         [NonAction]
         public bool IsEmaiExist(string email)
         {
