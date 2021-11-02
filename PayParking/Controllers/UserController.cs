@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace PayParking.Controllers
 {
@@ -87,7 +88,61 @@ namespace PayParking.Controllers
                 return View();
             }
         }
-        
+        //login
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(UserLogin login,string ReturnUrl="")
+        {
+            string message = "";
+            using (DatabaseEntities1 dc = new DatabaseEntities1())
+            {
+                var v = dc.Users.Where(a => a.Email == login.Email).FirstOrDefault();
+                if (v != null)
+                {
+                    if (!v.IsEmailVerified)
+                    {
+                        ViewBag.Message = "Please verify your email first";
+                        return View();
+                    }
+
+                    if (string.Compare(Cryptography.Hash(login.Password), v.Password) == 0)
+                    {
+                        int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
+                        var ticket = new FormsAuthenticationTicket(login.Email, login.RememberMe, timeout);
+                        string encrypted = FormsAuthentication.Encrypt(ticket);
+                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                        cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                        cookie.HttpOnly = true;
+                        Response.Cookies.Add(cookie);
+
+
+                        if (Url.IsLocalUrl(ReturnUrl))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        message = "Invalid credential provided";
+                    }
+                }
+                else
+                {
+                    message = "Invalid credential provided";
+                }
+            }
+            ViewBag.Message = message;
+            return View();
+        }
         [NonAction]
         public bool IsEmaiExist(string email)
         {
