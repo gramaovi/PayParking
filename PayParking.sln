@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayParking", "PayParking\PayParking.csproj", "{44E13EF8-8B0E-4394-8C69-91AE13AB8472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayParking.Tests", "PayParking.Tests\PayParking.Tests.csproj", "{F69C1A24-6389-46C2-AF5E-814EC32B965C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44E13EF8-8B0E-4394-8C69-91AE13AB8472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E13EF8-8B0E-4394-8C69-91AE13AB8472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E13EF8-8B0E-4394-8C69-91AE13AB8472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E13EF8-8B0E-4394-8C69-91AE13AB8472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F69C1A24-6389-46C2-AF5E-814EC32B965C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69C1A24-6389-46C2-AF5E-814EC32B965C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69C1A24-6389-46C2-AF5E-814EC32B965C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69C1A24-6389-46C2-AF5E-814EC32B965C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BD8D702-D299-44B4-B89C-553CA89A717A}
+	EndGlobalSection
+EndGlobal
