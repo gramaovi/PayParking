@@ -17,9 +17,9 @@ namespace PayParking.Controllers
         {
             return View();
         }
-        [HttpGet]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Exclude ="IsEmailVerified,ActivationCode")]User user)
+        public ActionResult Registration([Bind(Exclude = "IsEmailVerified,ActivationCode")] User user)
         {
             bool Status = false;
             string message = "";
