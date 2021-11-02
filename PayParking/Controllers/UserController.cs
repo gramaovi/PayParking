@@ -35,7 +35,8 @@ namespace PayParking.Controllers
                 user.ActivationCode = Guid.NewGuid();
 
                 //Password hashing
-
+                user.Password = Cryptography.Hash(user.Password);
+                user.ConfirmPassword = Cryptography.Hash(user.ConfirmPassword);
             }
             else
             {
