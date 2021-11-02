@@ -96,6 +96,7 @@ namespace PayParking.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(UserLogin login,string ReturnUrl="")
         {
             string message = "";
@@ -142,6 +143,12 @@ namespace PayParking.Controllers
             }
             ViewBag.Message = message;
             return View();
+        }
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "User");
         }
         [NonAction]
         public bool IsEmaiExist(string email)
