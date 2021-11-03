@@ -252,6 +252,7 @@
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Home\GetParkings.cshtml" />
+    <Content Include="Views\Home\ParkCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Parking\" />
