@@ -169,7 +169,7 @@ namespace PayParking.Controllers
             var toEmail = new MailAddress(email);
             var fromEmailPassword = "matrixqwerty123";
             string subject = "Your account was succesfully created";
-            string body = "<br/><br/> You re Parking Pay service account was successfully created. Click on the link below to verify your account " + link + "<br/><br/><a href='" + link + "'>" + link + "</a>";
+            string body = "<br/><br/> You re Parking Pay Service account was successfully created. Click on the link below to verify your account <br/><br/><a href='" + link + "'>" + link + "</a>";
             var smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",

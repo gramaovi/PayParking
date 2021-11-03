@@ -135,6 +135,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\User.cs" />
+    <Compile Include="Models\Parking.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parking.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Parking.cs">
+      <DependentUpon>Parking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Parking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parking.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Parking1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Parking.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
@@ -169,6 +187,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Parking.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Parking.edmx</DependentUpon>
+      <LastGenOutput>Parking.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Parking.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Parking.edmx</DependentUpon>
+      <LastGenOutput>Parking1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\UserModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UserModel.edmx</DependentUpon>
@@ -187,6 +215,13 @@
     </EntityDeploy>
     <Content Include="Models\UserModel.edmx.diagram">
       <DependentUpon>UserModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Parking.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Parking.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Parking.edmx.diagram">
+      <DependentUpon>Parking.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

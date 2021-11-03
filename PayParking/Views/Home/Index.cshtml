@@ -1,11 +1,14 @@
-﻿
+﻿@model PayParking.Models.Parking
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+
+
 Welcome @HttpContext.Current.User.Identity.Name;
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm" }))
@@ -13,3 +16,17 @@ Welcome @HttpContext.Current.User.Identity.Name;
         <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
     }
 }
+
+<div class="form-horizontal">
+    <h4>User</h4>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="View Parkings" class="btn btn-default" />
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Buy ticket" class="btn btn-default" />
+        </div>
+    </div>
+   
+</div>
