@@ -10,6 +10,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
@@ -18,9 +21,7 @@
         <th>
             @Html.DisplayNameFor(model => model.CheckIn)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckOut)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.LicencePlate)
         </th>
@@ -31,30 +32,30 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckIn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckOut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LicencePlate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsFree)
-        </td>
-        <td>
-            @Html.ActionLink("Park Here", "ParkCar", new { id=item.Id }) 
-           
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CheckIn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LicencePlate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsFree)
+    </td>
+    <td>
+        @Html.ActionLink("Park Here", "ParkCar", new { id = item.Id })
+
+    </td>
+</tr>
 }
 
 </table>

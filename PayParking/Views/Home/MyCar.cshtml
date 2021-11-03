@@ -1,0 +1,28 @@
+﻿@model PayParking.Models.Parking
+
+@{
+    ViewBag.Title = "MyCar";
+}
+
+<h2>MyCar</h2>
+<h3>You were parked for @ViewBag.time Hours, to open the gate, you have to pay @ViewBag.price Lei!</h3>
+<h3>You re car is parked at number @ViewBag.park_number</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <h3>Are you sure you want leave the parking place?</h3>
+            <div class="col-md-offset-2 col-md-10">
+
+
+                <input type="submit" value="Yes!" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

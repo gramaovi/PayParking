@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -66,6 +67,72 @@ namespace PayParking.Controllers
                 }
             }
  
+        }
+
+        public  ActionResult MyCar()
+        {
+            Parking park;
+            string email = System.Web.HttpContext.Current.User.Identity.Name;
+
+            using (DatabaseEntities1 de = new DatabaseEntities1())
+            {
+                User user = de.Users.Where(x => x.Email == email).FirstOrDefault<User>();
+                using (DatabaseEntities2 de2 = new DatabaseEntities2())
+                {
+                    park = de2.Parkings.Where(x => x.LicencePlate == user.LicencePlate).FirstOrDefault<Parking>();
+                   
+                    TimeSpan diff =  DateTime.Now - park.CheckIn.Value;
+                    
+                    double time = diff.TotalSeconds / 60;
+                    int rounded_time;
+                    if (time % 60 != 0)               
+                        rounded_time = (int)(time / 60) + 1;                
+                    else
+                        rounded_time = (int)time / 60;
+                    int price = 10;
+                    if (rounded_time > 1)
+                        for(int i=2;i<=rounded_time;i++)
+                        {
+                            price += 5;
+                        }
+
+
+                    ViewBag.price = price;
+                    ViewBag.time = rounded_time;
+                    ViewBag.park_number = park.Id;
+                   
+
+                }
+            }
+
+            return View(park);
+            
+        }
+
+        [HttpPost]
+
+        public ActionResult MyCar(Parking park)
+        {
+            string email = System.Web.HttpContext.Current.User.Identity.Name;
+
+            using (DatabaseEntities1 de = new DatabaseEntities1())
+            {
+                User user = de.Users.Where(x => x.Email == email).FirstOrDefault<User>();
+                using (DatabaseEntities2 de2 = new DatabaseEntities2())
+                {
+                    park = de2.Parkings.Where(x => x.LicencePlate == user.LicencePlate).FirstOrDefault<Parking>();
+
+                    park.LastName = null;
+                    park.FirstName = null;
+                    park.CheckIn = null;
+                    park.IsFree = true;
+                    park.LicencePlate = null;
+                    de2.Entry(park).State = System.Data.Entity.EntityState.Modified;
+                    de2.SaveChanges();
+                    return RedirectToAction("GetParkings");
+                }
+
+            }
         }
 
     }
