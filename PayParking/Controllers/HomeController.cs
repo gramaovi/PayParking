@@ -9,9 +9,14 @@ namespace PayParking.Controllers
 {
     public class HomeController : Controller
     {
-        private ParkingdbContext pdb = new ParkingdbContext();
         [Authorize]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetParkings()
         {
             using (DatabaseEntities2 de = new DatabaseEntities2())
             {
