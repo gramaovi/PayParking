@@ -7,18 +7,19 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<div class="form-horizontal">
-   
-    <div class="form-group">
-        <h3>Are you sure you want to park your car? Parking .... 1 h....10 euro..!</h3>
-        <div class="col-md-offset-2 col-md-10">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <h3>Are you sure you want to park your car? Parking .... 1 h....10 euro..!</h3>
+            <div class="col-md-offset-2 col-md-10">
 
 
-            <input type="submit" value="Yes!" class="btn btn-default" />
+                <input type="submit" value="Yes!" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
 }
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
+@Html.ActionLink("Home", "Index", "Home")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

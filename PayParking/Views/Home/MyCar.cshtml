@@ -5,7 +5,7 @@
 }
 
 <h2>MyCar</h2>
-<h3>You`re care, having the Licence Plate number:@ViewBag.licencePlate, were parked for @ViewBag.time Hours, at parking place number @ViewBag.park_number. To open the gate, you have to pay @ViewBag.price Lei!</h3>
+<h3>You`re car, having the Licence Plate number:@ViewBag.licencePlate, were parked for @ViewBag.time Hours, at parking place number @ViewBag.park_number. To open the gate, you have to pay @ViewBag.price Lei!</h3>
 <h3>Have a nice day!</h3>
 
 @using (Html.BeginForm())
@@ -23,6 +23,10 @@
         </div>
     </div>
 }
+<td>
+   @Html.ActionLink("Home","Index", "Home")
+
+</td>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

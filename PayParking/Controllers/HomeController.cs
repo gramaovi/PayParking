@@ -62,6 +62,8 @@ namespace PayParking.Controllers
                 User user = de.Users.Where(x => x.Email == email).FirstOrDefault<User>();
                 using (DatabaseEntities2 de2 = new DatabaseEntities2())
                 {
+                    if (de2.Parkings.Where(x => x.LicencePlate == user.LicencePlate).FirstOrDefault<Parking>()!=null)
+                        return RedirectToAction("MyCar","Home");
                     park.LastName = user.LastName;
                     park.FirstName = user.FirstName;
                     park.CheckIn = DateTime.Now;
@@ -110,6 +112,7 @@ namespace PayParking.Controllers
                             ViewBag.price = price;
                             ViewBag.time = rounded_time;
                             ViewBag.park_number = park.Id;
+                            ViewBag.licencePlate = park.LicencePlate;
 
                         }
                         else
