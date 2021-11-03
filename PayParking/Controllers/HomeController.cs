@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PayParking.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,15 @@ namespace PayParking.Controllers
 {
     public class HomeController : Controller
     {
+        private ParkingdbContext pdb = new ParkingdbContext();
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            using (DatabaseEntities2 de = new DatabaseEntities2())
+            {
+
+                return View(de.Parkings.ToList());
+            }
         }
 
 

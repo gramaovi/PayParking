@@ -11,7 +11,8 @@ namespace PayParking.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+
     public partial class Parking
     {
         public int Id { get; set; }
@@ -21,5 +22,9 @@ namespace PayParking.Models
         public Nullable<System.DateTime> CheckOut { get; set; }
         public string LicencePlate { get; set; }
         public bool IsFree { get; set; }
+    }
+    public class ParkingdbContext : DbContext
+    {
+        public DbSet<Parking> Parkings { get; set; }
     }
 }
