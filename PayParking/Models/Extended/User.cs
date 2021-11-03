@@ -34,5 +34,9 @@ namespace PayParking.Models
         [DataType(DataType.Password)]
         [Compare("Password",ErrorMessage ="Confirm password and password do not match")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Licence Plate")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Licence Plate Number required")]
+        public string LicencePlate { get; set; }
     }
 }
