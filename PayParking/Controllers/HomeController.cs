@@ -50,19 +50,22 @@ namespace PayParking.Controllers
 
             using (DatabaseEntities1 de = new DatabaseEntities1())
             {
+                User user = de.Users.Where(x => x.Email == email).FirstOrDefault<User>();
+                using (DatabaseEntities2 de2 = new DatabaseEntities2())
+                {
+                    park.LastName = user.LastName;
+                    park.FirstName = user.FirstName;
+                    park.CheckIn = DateTime.Now;
+                    park.IsFree = false;
+                    park.LicencePlate = user.LicencePlate;
+                    de2.Entry(park).State = System.Data.Entity.EntityState.Modified;
+                    de2.SaveChanges();
+                    return RedirectToAction("GetParkings");
 
+
+                }
             }
-            using (DatabaseEntities2 de = new DatabaseEntities2())
-            {
-                
-                park.CheckIn= DateTime.Now;
-                park.IsFree = false;
-                de.Entry(park).State = System.Data.Entity.EntityState.Modified;
-                de.SaveChanges();
-                return RedirectToAction("GetParkings");
-
-
-            }
+ 
         }
 
     }
